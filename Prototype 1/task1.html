@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bolton Live Temperature</title>
+</head>
+
+<body>
+		<div class="student-info">
+		<p><strong>MD MOSTAK LAHERI</strong><br>
+		Student ID: <strong>2511809</strong></p>
+		</div>
+	<h1>Current Weather in Bolton</h1>
+	<p id="myParagraph">Loading weather data...</p>
+	
+	<script>
+  
+		// Fetch Bolton weather data from API
+		fetch('https://api.openweathermap.org/data/2.5/weather?q=Bolton&units=metric&appid=c6b159fd2be0e6e7f666bd4c497d0587')
+    
+		// Convert response string to json object
+		.then(response => response.json())
+		.then(response => {
+	
+		// Display the whole API response in console
+		console.log(response); 
+      
+		// Copy one element of response to our HTML paragraph
+		document.getElementById('myParagraph').innerHTML = 
+			"Temperature: " + response.main.temp + "°C<br>" +
+			"Feels like: " + response.main.feels_like + "°C<br>";
+		})
+    
+		.catch(err => {
+	
+		// Display errors in console
+		console.log(err);
+		document.getElementById('myParagraph').innerHTML = "Error fetching weather data.";
+		});
+	 </script>
+  
+<style>
+
+  body {
+      background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/07/Weather-Image-Download-Free.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color:white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 1.5cm;
+      margin-bottom: 20px;
+    }
+	
+    #myParagraph {
+      font-size: 1cm;
+      margin-top: 20px;
+    }
+	.student-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0);
+      padding: 10px 15px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 18px;
+    }
+
+  </style>
+</body>
+</html>
